@@ -1,0 +1,183 @@
+<!DOCTYPE HTML>
+<!--
+	Hielo by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<style type="text/css">
+			.textbox{
+				margin-top: 3%;
+				width: 60%;
+				border: 2px solid red;
+    			border-radius: 8px;
+    			padding: 1%;
+    			color: green;
+    			background-color: lightgreen;
+			}
+			.checkbox{
+				zoom:3;
+			}
+			select{
+				width: 18%;
+				zoom:3;
+				color: white;
+				background-color: black;
+			}
+			.lobby{
+				width: 45%;
+				height: 15%;
+				background-color: white;
+				padding: 2px;
+				background-color: #8ea58e;
+				border: 2px dotted red;
+				border-radius: 53px;
+			}
+			div {
+  				height: 100vh;
+			}
+			#button{
+				
+				background: #0066A2;
+				color: white;
+				border-style: outset;
+				border-color: #0066A2;
+				height: 50px;
+				width: 100px;
+				font: bold 15px arial, sans-serif;
+				text-shadow:none;
+			}
+
+			.inline{
+				color: green;
+				font-size: 18px;
+				font-style: bold;
+			}
+
+			#join{
+				background: #3f0e0e;
+				color: white;
+				border-style: outset;
+				border-color: #0066A2;
+				height: 30px;
+				width: 100px;
+				font: bold 15px arial, sans-serif;
+				text-shadow:transparent;
+			}
+
+		</style>
+		<script src="assets/js/jquery.min.js"></script>
+		<script type="text/javascript">
+
+			setInterval(printLobby,1000);
+			function postLobby(){
+				if(!validUrl(document.getElementById("url").value)){
+					alert("Invalid lobby address")
+				}else{
+					var params = {}
+					$.get("https://api.ipdata.co?api-key=805eb80aa051600bc7c73ca9af566e3e41de181a14c24b666256e08d",function(data){
+						params.ip = data.ip;
+						params.url = document.getElementById("url").value;
+						params.prime = document.getElementById("prime").checked;
+						//params.derank = document.getElementById("derank").checked;
+						params.rank = document.getElementById("rank").value;
+						params.mmtype = document.getElementById("mmtype").value;
+						params.language = document.getElementById("language").value;
+						$.post("/postLobby",params,(respond)=>{
+							if(respond.res == true){
+								alert("You lobby have been posted")
+								document.getElementById("url").value = ""
+							}else{
+								alert(respond.msg);
+								document.getElementById("url").value = ""
+							}
+						})
+					})
+					
+				}
+			}
+			function validUrl(string){
+				if(string.substring(0,18) == "steam://joinlobby/"){
+					return true;
+				}else{
+					return false;
+				}
+			}
+
+			function printLobby(){
+				$.get("/getLobby",function(respond){
+					var lobbyArray = respond.res;
+					var line,lang,time;
+
+					$("#lobbies").html("")
+					for(var i=lobbyArray.length-1;i>=0;i--){
+						lang = lobbyArray[i].language;
+						line = (lobbyArray[i].prime == "true")?lobbyArray[i].rank + "," + "prime " + lobbyArray[i].mmtype : lobbyArray[i].rank + "," + lobbyArray[i].mmtype;
+						
+						var startDate = new Date(lobbyArray[i].time);
+						var endDate   = new Date();
+						var time = (endDate.getTime() - startDate.getTime()) / 1000
+						if(time > 60*60*60)
+							break;
+						if(time<60){
+							time = parseInt(time) + " sec"
+						}else if(time < 60*60){
+							time = parseInt(time/60) + " min";
+						}else if(time <60*60*60){
+							time = parseInt(time/(60*60))+ "hrs";
+						}
+						$("#lobbies").append("<div class='lobby'><p style='line-height: 0.2em' class='inline'>"+line+"</p><p style='line-height: 0.2em' class='inline'>"+lang+"</p><p style='line-height: 0.2em' class='inline'>"+time+" ago</p><button id='join' onclick=join('"+lobbyArray[i].url+"')>Join lobby</button></div><br><br>")
+					}
+				})
+			}
+
+			function join(abc){
+				window.location=abc;
+			}
+
+			
+
+		</script>
+	</head>
+	<body bgcolor="lightgreen">
+		<center>
+			<input type="text" name="address" class="textbox" id="url"><br>
+			<input type="checkbox" class="checkbox" name="prime" id="prime">
+			<label class="checkbox">Prime Lobby</label>
+			<!--<input type="checkbox" class="checkbox" name="derank" id="derank">
+			<label class="checkbox">Deranking lobby</label>--><br><br>
+			<select name="rank" id="rank">
+				<option value="any rank">Any rank</option>
+				<option value="gn3+">Gn3+</option>
+				<option value="mg+">Mg+</option>
+				<option value="mge+">Mge+</option>
+				<option value="dmg+">Dmg</option>
+				<option value="le+">Le+</option>
+			</select>
+			<select name="mmtype" id="mmtype">
+				<option value="legit">Legit game</option>
+				<option value="Prime legit">Prime Legit game</option>
+				<option value="Cheating">Cheating</option>
+				<option value="Rage">Rage</option>
+				<option value="Spin">Spin</option>
+				<option value="Legit wingman">Legit Wingman</option>
+				<option value="Cheat wingman">Cheat Wingman</option>
+			</select>
+			<select name="language" id="language">
+				<option value="any language">Any language</option>
+				<option value='Afrikanns'>Afrikanns</option><option value='Albanian'>Albanian</option><option value='Arabic'>Arabic</option><option value='Armenian'>Armenian</option><option value='Basque'>Basque</option><option value='Bengali'>Bengali</option><option value='Bulgarian'>Bulgarian</option><option value='Catalan'>Catalan</option><option value='Cambodian'>Cambodian</option><option value='Chinese (Mandarin)'>Chinese (Mandarin)</option><option value='Croation'>Croation</option><option value='Czech'>Czech</option><option value='Danish'>Danish</option><option value='Dutch'>Dutch</option><option value='English'>English</option><option value='Estonian'>Estonian</option><option value='Fiji'>Fiji</option><option value='Finnish'>Finnish</option><option value='French'>French</option><option value='Georgian'>Georgian</option><option value='German'>German</option><option value='Greek'>Greek</option><option value='Gujarati'>Gujarati</option><option value='Hebrew'>Hebrew</option><option value='Hindi'>Hindi</option><option value='Hungarian'>Hungarian</option><option value='Icelandic'>Icelandic</option><option value='Indonesian'>Indonesian</option><option value='Irish'>Irish</option><option value='Italian'>Italian</option><option value='Japanese'>Japanese</option><option value='Javanese'>Javanese</option><option value='Korean'>Korean</option><option value='Latin'>Latin</option><option value='Latvian'>Latvian</option><option value='Lithuanian'>Lithuanian</option><option value='Macedonian'>Macedonian</option><option value='Malay'>Malay</option><option value='Malayalam'>Malayalam</option><option value='Maltese'>Maltese</option><option value='Maori'>Maori</option><option value='Marathi'>Marathi</option><option value='Mongolian'>Mongolian</option><option value='Nepali'>Nepali</option><option value='Norwegian'>Norwegian</option><option value='Persian'>Persian</option><option value='Polish'>Polish</option><option value='Portuguese'>Portuguese</option><option value='Punjabi'>Punjabi</option><option value='Quechua'>Quechua</option><option value='Romanian'>Romanian</option><option value='Russian'>Russian</option><option value='Samoan'>Samoan</option><option value='Serbian'>Serbian</option><option value='Slovak'>Slovak</option><option value='Slovenian'>Slovenian</option><option value='Spanish'>Spanish</option><option value='Swahili'>Swahili</option><option value='Swedish '>Swedish </option><option value='Tamil'>Tamil</option><option value='Tatar'>Tatar</option><option value='Telugu'>Telugu</option><option value='Thai'>Thai</option><option value='Tibetan'>Tibetan</option><option value='Tonga'>Tonga</option><option value='Turkish'>Turkish</option><option value='Ukranian'>Ukranian</option><option value='Urdu'>Urdu</option><option value='Uzbek'>Uzbek</option><option value='Vietnamese'>Vietnamese</option><option value='Welsh'>Welsh</option><option value='Xhosa'>Xhosa</option>
+			</select><br><br>
+			<input type="button" value="Post lobby" id="button" onclick="postLobby()"><br><br><br>
+			<div id="lobbies">
+				
+			</div> 
+		</center>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/skel.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+	</body>
+	
+</html>

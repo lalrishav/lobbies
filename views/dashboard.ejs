@@ -1,0 +1,183 @@
+<!DOCTYPE HTML>
+<!--
+	Hielo by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>Hielo by TEMPLATED</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<script type="text/javascript">
+			function getReferral(){
+				$.get("/getReferral",function(res){
+					if(res.res){
+						if(!res.isFound){
+
+						}else{
+
+						}
+					}else{
+						
+					}
+				})
+			}
+		</script>
+	</head>
+	<body>
+		<section id="one" class="wrapper style2">
+				<div class="inner">
+					<div class="grid-style">
+						<div>
+							<div class="box">
+								<div class="content">
+									<header class="align-center">
+										<h2>Select your options</h2>
+									</header>
+									<div class="6u 12u$(small)">
+										<input type="checkbox" name="walls" id="walls">
+										<label for="walls">Walls + Radar</label>
+									</div>
+									<div class="6u 12u$(small)">
+										<input type="checkbox" name="legit" id="legit">
+										<label for="legit">Legit aimbot</label>
+									</div>
+									<div class="6u 12u$(small)">
+										<input type="checkbox" name="rage" id="rage">
+										<label for="rage">Rage aimbot</label>
+									</div>
+									<div class="6u 12u$(small)">
+										<input type="checkbox" name="heavyrage" id="heavyrage">
+										<label for="heavyrage">Heavy Rage aimbot</label>
+									</div>
+									<div class="6u 12u$(small)">
+										<input type="checkbox" name="spin" id="spin">
+										<label for="spin">Spin bot</label>
+									</div>
+									<div class="6u 12u$(small)">
+										<input type="checkbox" name="trigger" id="trigger">
+										<label for="trigger">Trigger bot</label>
+									</div>
+									<div class="6u 12u$(small)">
+										<input type="checkbox" name="recoil" id="recoil">
+										<label for="recoil">Recoil control</label>
+									</div>
+									<div class="6u 12u$(small)">
+										<input type="checkbox" name="hitbox" id="hitbox">
+										<label for="hitbox">Hit box amount and point</label>
+									</div>
+									<div class="6u 12u$(small)">
+										<input type="checkbox" name="grenade" id="grenade">
+										<label for="grenade">Grenade trajectory and prediction</label>
+									</div>
+									<div class="6u 12u$(small)">
+										<input type="checkbox" name="schair" id="schair">
+										<label for="schair">Fake sniper crosshair</label>
+									</div>
+									<div class="6u 12u$(small)">
+										<input type="checkbox" name="rchair" id="rchair">
+										<label for="rchair">Recoil crosshair</label>
+									</div>
+									<div class="6u 12u$(small)">
+										<input type="checkbox" name="chatspam" id="chatspam">
+										<label for="chatspam">Chat spam</label>
+									</div>
+									<div class="6u 12u$(small)">
+										<input type="checkbox" name="ranks" id="ranks">
+										<label for="ranks">Reveals player ranks</label>
+									</div>
+									<div class="6u 12u$(small)">
+										<input type="checkbox" name="autoac" id="autoac">
+										<label for="autoac">Auto accept matchmaking</label>
+									</div>
+									<div class="6u 12u$(small)">
+										<input type="checkbox" name="autostrafe" id="autostrafe">
+										<label for="autostrafe">Auto strafe</label>
+									</div>
+									<div class="6u 12u$(small)">
+										<input type="checkbox" name="purchase" id="purchase">
+										<label for="purchase">Enemy purchase details</label>
+									</div>
+									<div class="6u 12u$(small)">
+										<input type="checkbox" name="flashbang" id="flashbang">
+										<label for="flashbang">Flashbang reducer</label>
+									</div>
+									<div class="6u 12u$(small)">
+										<input type="checkbox" name="spectators" id="spectators">
+										<label for="spectators"> Spectator's table</label>
+									</div>
+									<div class="6u 12u$(small)">
+										<input type="checkbox" name="c4timer" id="c4timer">
+										<label for="c4timer"> C4 timer</label>
+									</div>
+									<div class="6u 12u$(small)">
+										<input type="checkbox" name="skin" id="skin">
+										<label for="skin"> Skin changer</label>
+									</div>
+									<footer class="align-center">
+										<a href="#" class="button alt">Learn More</a>
+									</footer>
+								</div>
+							</div>
+						</div>
+
+						<div>
+							<div class="box">
+								<div class="content">
+									<header class="align-center">
+										<h2>Profile</h2>
+									</header>
+									<p class="align-center" style="color: red"><strong>Get paid in your wallet for refering hacks</strong></p>
+									<div class="align-center">
+										<a href="#" class="button alt icon fa-briefcase">
+										View Wallet</a>
+										<a href="#" class="button alt icon fa-lock" onclick="getReferral()">
+										Get refrel code</a><br><br>
+										<a href="#" class="button alt icon fa-lock">
+										Check Hack Status</a>
+										<a href="#" class="button alt icon fa-lock">
+										View offers</a>
+										<br><br>
+									</div>
+									<footer class="align-center">
+										<div id="no balance" style="display: none"><h2>Sorry you don't have any balance</h2></div>
+										<div id="balance" style="display: none">
+											<h2>Your current balance is :- $<span id="amount">50</h2>
+											<a href="#" class="button alt icon fa-lock">Withdraw</a>
+										</div>
+										<div id="no refrel" style="display: none">
+											<h3>You don't have any refrel.Please buy a hacks above $7.3 to get a refrel code and share it.Using your refrel you and your friend both will get paid in wallet</h3>
+										</div>
+										<div id="refrel" style="display: none">
+											<h2>Your refrel code is <span id="code" style="color: red">drtfgyhujkl</span></h2>
+										</div>
+									</footer>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</section>
+			<footer id="footer">
+				<div class="container">
+					<ul class="icons">
+						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+						<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+					</ul>
+				</div>
+				<div class="copyright">
+					&copy; Untitled. All rights reserved.
+				</div>
+			</footer>
+
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+	</body>
